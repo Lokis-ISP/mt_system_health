@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
+
 def inventory_mikrotik_system_health(info):
     if info:
         return [('', None)]
     else:
         return None
+
 
 def check_mikrotik_system_health(item, _no_params, info):
     for voltage, temp, cputemp, powercons, current, cpufreq in info:
@@ -44,14 +46,14 @@ check_info['mikrotik_system_health'] = {
 
 snmp_info['mikrotik_system_health'] = (
     '.1.3.6.1.4.1.14988.1.1.3', [
-        '8.0',  # voltage
-        '10.0', # temperature
-        '11.0', # cpu-temperature
-        '12.0', # power consumption
-        '13.0', # current
-        '14.0', # cpu frequency
+        '8.0',   # voltage
+        '10.0',  # temperature
+        '11.0',  # cpu-temperature
+        '12.0',  # power consumption
+        '13.0',  # current
+        '14.0',  # cpu frequency
     ]
 )
 
 snmp_scan_functions['mikrotik_system_health'] = \
-    lambda oid: oid('.1.3.6.1.4.1.14988.1.1.3.*') != None
+    lambda oid: oid('.1.3.6.1.4.1.14988.1.1.3.*') is not None
